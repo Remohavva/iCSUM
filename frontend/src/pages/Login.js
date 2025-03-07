@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login() {
+function Login({ onLogin }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -14,6 +14,7 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:5002/api/users/login', formData);
       localStorage.setItem('userToken', response.data.token);
+      onLogin();
       navigate('/');
     } catch (error) {
       console.error('Login error:', error);

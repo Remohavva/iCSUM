@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+:root {
+  --primary-color: #2d3436;
+  --secondary-color: #0984e3;
+  --background-color: #f5f6fa;
+  --card-color: #ffffff;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: var(--background-color);
+}

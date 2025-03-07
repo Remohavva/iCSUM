@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Navbar({ setSearchQuery }) {
+function Navbar({ setSearchQuery, onLogout }) {
   const navigate = useNavigate();
   const token = localStorage.getItem('userToken');
 
   const handleLogout = () => {
     localStorage.removeItem('userToken');
-    navigate('/login');
+    navigate('/');
+    if (onLogout) {
+      onLogout();
+    }
   };
 
   return (
