@@ -50,6 +50,7 @@ function Home({ searchQuery }) {
               {'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}
             </div>
             <p className="review-text">{review.review}</p>
+            <p className="review-author">Posted by: {review.userId?.username || 'Anonymous'}</p>
           </div>
         ))}
       </div>

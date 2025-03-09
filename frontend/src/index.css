@@ -24,21 +24,67 @@ body {
 nav {
   background-color: var(--card-color);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  padding: 1rem 2rem;
+  padding: 1.5rem 3rem;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
 }
 
+.logo {
+  margin: 3rem 0;  /* Increased top and bottom margin */
+  text-align: center;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  padding-top: 1rem;  /* Added top padding */
+}
+
 nav ul {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 4rem;  /* Increased gap */
   max-width: 1200px;
   margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
 }
 
+.nav-left {
+  display: flex;
+  gap: 4rem;  /* Increased gap */
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  gap: 4rem;  /* Increased gap */
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: color 0.2s;
+  padding: 0.5rem 1rem;  /* Added padding around links */
+}
+
+nav a:hover {
+  color: var(--secondary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 6rem auto 2rem;
+  padding: 0 1rem;
+}
+
+/* Remove all sidebar-related classes */
 nav a {
   text-decoration: none;
   color: var(--primary-color);
@@ -274,4 +320,102 @@ button:hover {
 .landing-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.review-author {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  font-style: italic;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 60px;
+  background-color: var(--card-color);
+  box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+.sidebar:hover {
+  width: 250px;
+}
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 1.5rem;
+  padding-top: 60px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.sidebar:hover .sidebar-content {
+  opacity: 1;
+}
+
+.container {
+  margin-left: 60px;
+  padding: 2rem;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar:hover + .container {
+  margin-left: 250px;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 1.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.sidebar:hover .sidebar-content {
+  opacity: 1;
+}
+
+.container {
+  margin-left: 250px;
+  padding: 2rem;
+}
+
+.search-container {
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 6px;
 }

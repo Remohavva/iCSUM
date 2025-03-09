@@ -1,34 +1,15 @@
 import express from 'express';
 import Product from '../models/productModel.js';
-import { protect } from '../middleware/authMiddleware.js';  // Changed from 'import protect' to 'import { protect }'
+import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// Public routes
-router.get('/artists', async (req, res) => {
-  try {
-    const artists = await Product.distinct('artist');
-    res.json(artists);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-});
-
 // Protected routes - require authentication
 router.get('/', protect, async (req, res) => {
-  const reviews = await Product.find({}).sort({ createdAt: -1 });
+  const reviews = await Product.find({})
+    .sort({ createdAt: -1 })
+    .populate('userId', 'username'); // Add this line to populate user information
   res.json(reviews);
-});
-
-router.get('/artist/:artistName', protect, async (req, res) => {
-  try {
-    const reviews = await Product.find({
-      artist: { $regex: new RegExp(req.params.artistName, 'i') }
-    });
-    res.json(reviews);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
 });
 
 router.post('/', protect, async (req, res) => {
@@ -72,4 +53,14 @@ router.delete('/:id', protect, async (req, res) => {
     res.status(404).json({ message: "Review not found" });
   }
 });
+
+router.get('/myreviews', protect, async (req, res) => {
+  try {
+    const reviews = await Product.find({ userId: req.userId }).sort({ createdAt: -1 });
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;

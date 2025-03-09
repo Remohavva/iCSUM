@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar.js';
+import Sidebar from './components/Sidebar.js';
 import Landing from './pages/Landing.js';
 import Home from './pages/Home.js';
 import Login from './pages/Login.js';
@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {isAuthenticated && <Navbar setSearchQuery={setSearchQuery} onLogout={handleLogout} />}
+        {isAuthenticated && <Sidebar setSearchQuery={setSearchQuery} onLogout={handleLogout} />}
         <Routes>
           <Route path="/" element={isAuthenticated ? <Home searchQuery={searchQuery} /> : <Landing />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />

@@ -16,30 +16,22 @@ function Navbar({ setSearchQuery, onLogout }) {
   return (
     <nav>
       <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/artists">Artists</Link></li>
+        <div className="nav-left">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/artists">Artists</Link></li>
+          {token && <li><Link to="/add-review">Add Review</Link></li>}
+          {token && <li><Link to="/my-reviews">My Reviews</Link></li>}
+        </div>
         {token ? (
-          <>
-            <li><Link to="/add-review">Add Review</Link></li>
-            <li><button onClick={handleLogout}>Logout</button></li>
-          </>
+          <button onClick={handleLogout} className="logout-btn">Logout</button>
         ) : (
-          <>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Register</Link></li>
-          </>
+          <div className="auth-buttons">
+            <Link to="/login" className="nav-item">Login</Link>
+            <Link to="/register" className="nav-item">Register</Link>
+          </div>
         )}
-        <li className="search-container">
-          <input
-            type="text"
-            placeholder="Search reviews..."
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
-          />
-        </li>
       </ul>
     </nav>
   );
 }
-
-export default Navbar;
+export default Sidebar;
